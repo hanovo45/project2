@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.prod.mapper.ManageHotelListMapper">
+  <select id="getHotelList" resultType="HotelsVO">
+    select * from hotels order by hotel_id asc
+  </select>
+  
+  <update id="insertHotel" parameterType="co.prod.vo.HotelsVO">
+insert into hotels (HOTEL_ID,HOTEL_LOCATION,HOTEL_NAME,HOTEL_TEL,HOTEL_SERVICE,HOTEL_VIEW,HOTEL_ADDRESS,HOTEL_PHOTO,HOTEL_CHECKIN,HOTEL_CHECKOUT) values(#{hotelId},#{hotelLocation},#{hotelName},#{hotelTel},#{hotelService},#{hotelView},#{hotelAddress},#{hotelPhoto},#{hotelCheckIn},#{hotelCheckOut})
+</update>
+
+</mapper>

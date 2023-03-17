@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.prod.mapper.PostsMapper">
+	<select id="getPostsQuestion" resultType="PostsVO">
+		select rownum, post_id, post_response, post_title, post_content,
+		post_writedate, user_email
+		from (select * from posts where post_type='Q' and post_requestid is null)
+		order by post_writedate desc
+	</select>
+	<select id="getPostsNotice" resultType="PostsVO">
+		select rownum, post_id, post_response, post_title, post_content,
+		post_writedate, user_email
+		from (select * from posts where post_type='N' and post_requestid is null)
+		order by post_writedate desc
+	</select>
+	<select id="getPostsFAQ" resultType="PostsVO">
+		select rownum, post_id, post_response, post_title, post_content,
+		post_writedate, user_email
+		from (select * from posts where post_type='F' and post_requestid is null)
+		order by post_writedate desc
+	</select>
+	<select id="getPost" parameterType="int" resultType="PostsVO">
+		select * from posts where post_id = #{pid}
+	</select>
+
+	<insert id="writePost" parameterType="PostsVO">
+		Insert into POSTS (POST_ID,POST_TYPE,POST_TITLE,POST_CONTENT,USER_EMAIL)
+		values
+		(posts_seq.nextval,#{postType},#{postTitle},#{postContent},#{userEmail})
+	</insert>
+
+	<select id="getPostId" resultType="int"> <!-- Sequence의 currval(현재값)을 가져옴 -->
+		SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME =
+		'POSTS_SEQ'
+	</select>
+
+	<select id="getTotalCount" resultType="int"
+		parameterType="String">
+		select count(*) from posts where post_type = '${type}'
+	</select>
+	
+	  <select id="postListPaging" resultType="PostsVO" parameterType="hashMap">
+  <![CDATA[
+    select post_id, post_response, post_title, post_content, post_writedate, user_email
+    from(select rownum rn, post_id, post_response, post_title, post_content, post_writedate, user_email from(select * from posts where post_type = '${type}' and post_requestid is null order by post_id desc)a where rownum <= #{page}*10)b
+    where b.rn > (#{page}-1)*10
+]]>
+  </select>
+</mapper>
