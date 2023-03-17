@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.prod.mapper.Mapper">
+
+  <select id="login" parameterType="co.prod.vo.UsersVO" resultType="co.prod.vo.UsersVO">
+    select * from users where user_email = #{userEmail} and user_password = #{userPassword}
+  </select>
+  
+  <insert id="insertUser" parameterType="co.prod.vo.UsersVO">
+  insert into users(user_email, user_password, user_nickname)
+values(#{userEmail},#{userPassword},#{userNickname})
+  </insert>
+</mapper>
