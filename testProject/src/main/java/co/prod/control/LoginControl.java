@@ -29,15 +29,28 @@ public class LoginControl implements Control {
 		System.out.println(vo);
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("email", vo.getUserEmail());
 		
-		try {
-			response.sendRedirect("test.do");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(vo!=null) {
+			
+			session.setAttribute("email", vo.getUserEmail());			
+			System.out.println( vo.getUserEmail());
+			session.setAttribute("pw", vo.getUserPassword());
+			System.out.println(vo.getUserPassword());
+			session.setAttribute("auth", vo.getUserAuth());
+			System.out.println(vo.getUserAuth());
+			try {
+				response.sendRedirect("test.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			
+			System.out.println("실패");
+			request.setAttribute("msg", "다시 로그인");
+			request.setAttribute("url", "WEB-INF/views/login/login.jsp");
+//			return 
 		}
-		
 		
 		
 //		String userEmail;

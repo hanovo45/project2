@@ -9,4 +9,6 @@ public interface Mapper {
 	
 	// 회원가입
 	public int insertUser(UsersVO vo);
+	
+	public UsersVO selectUser(int umail);
 }

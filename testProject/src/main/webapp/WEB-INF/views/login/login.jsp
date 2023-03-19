@@ -271,7 +271,7 @@ button.ghost {
                 -->
                 <input type="text" placeholder="Email" name="umail" required/>
                 <input type="password" placeholder="Password" name="upw" required/>
-                <a href="#">Forgot your password?</a>
+                <a href="findPwForm.do">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
         </div>

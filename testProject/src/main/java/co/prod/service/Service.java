@@ -13,5 +13,8 @@ public interface Service {
 	
 	// 로그아웃 ??
 	
+	// 회원 리스트? 하 어케해야ㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄹ
+//	public UsersVO getUser(String umail);
 	
+	public UsersVO getUser(int umail);
 }

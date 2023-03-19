@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.prod.control.FindPwControl;
+import co.prod.control.FindPwFormControl;
 import co.prod.control.LoginControl;
 import co.prod.control.LoginFormControl;
 import co.prod.control.LogoutControl;
@@ -43,6 +45,8 @@ public class FrontController extends HttpServlet{
 		map.put("/login.do", new LoginControl());	// 로그인 등록처리
 		map.put("/loginForm.do", new LoginFormControl());	// 로그인 등록화면
 		map.put("/logout.do", new LogoutControl());	// 로그아웃
+		map.put("/findPwForm.do", new FindPwFormControl()); 	// 비밀번호 찾기화면
+		map.put("/findPw.do", new FindPwControl());	// 비밀번호 찾기 처리
 		map.put("/signUp.do", new SignUpControl());	// 회원가입처리
 		map.put("/signUpForm.do", new SignUpFormControl());	//회원가입화면
 		map.put("/manageHotelList.do", new ManageHotelListControl()); //관리자페이지 홈

@@ -13,4 +13,8 @@
   insert into users(user_email, user_password, user_nickname)
 values(#{userEmail},#{userPassword},#{userNickname})
   </insert>
+  
+  <select id="selectUser" parameterType="co.prod.vo.UsersVO">
+  	select user_password from users where user_email=#{userEmail} and user_nickname=#{userNickname};
+  </select>
 </mapper>
