@@ -10,5 +10,8 @@ public interface Mapper {
 	// 회원가입
 	public int insertUser(UsersVO vo);
 	
-	public UsersVO selectUser(int umail);
+	// 비밀번호 찾기
+	public String selectUser(UsersVO vo);
+	
+	public UsersVO searchUser(String userEmail);
 }

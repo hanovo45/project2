@@ -5,7 +5,6 @@ import co.prod.vo.UsersVO;
 public interface Service {
 
 	// 로그인
-	
 	public UsersVO login(UsersVO vo);
 	
 	// 회원가입
@@ -13,8 +12,11 @@ public interface Service {
 	
 	// 로그아웃 ??
 	
-	// 회원 리스트? 하 어케해야ㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄻㅈㄷㄹ
-//	public UsersVO getUser(String umail);
+	// 파라미터 값
+	public String getUser(UsersVO vo);
 	
-	public UsersVO getUser(int umail);
+	// 
+	public UsersVO search(String userEmail);
+	
+//	이메일 
 }

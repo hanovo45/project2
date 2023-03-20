@@ -2,6 +2,7 @@ package co.prod.control;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,7 +22,7 @@ public class LoginControl implements Control {
 		
 		Service service = new ServiceImpl();
 		UsersVO vo = new UsersVO();
-		vo.setUserEmail(mail);
+		vo.setUserEmail(mail);	
 		vo.setUserPassword(pw);
 		System.out.println(vo);
 		
@@ -46,9 +47,15 @@ public class LoginControl implements Control {
 			}
 		}else {
 			
-			System.out.println("실패");
-			request.setAttribute("msg", "다시 로그인");
+//			System.out.println("실패");
+			request.setAttribute("msg", "이메일이나 비밀번호가 다릅니다");
 			request.setAttribute("url", "WEB-INF/views/login/login.jsp");
+			try {
+				request.getRequestDispatcher("loginForm.do").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 //			return 
 		}
 		

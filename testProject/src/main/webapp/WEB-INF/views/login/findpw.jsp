@@ -30,9 +30,13 @@
  	</div>
  </form>
  <script>
- function pw_search() { 
-	 	var frm = document.idfindscreen;
 
+ function pw_search() { 
+	 
+	 	
+	 	var frm = document.idfindscreen;
+		
+	 	
 	 	if (frm.umail.value.length <= 1) {
 		  alert("메일을 입력해주세요");
 		  return;

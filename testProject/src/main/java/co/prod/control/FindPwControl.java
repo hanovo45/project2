@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.prod.common.Control;
 import co.prod.service.Service;
@@ -16,72 +17,66 @@ public class FindPwControl implements Control {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		
 		String umail = request.getParameter("umail");
-//		String uname = request.getParameter("uname");
+		String uname = request.getParameter("uname");
 		
-		String hiddenumail = request.getParameter("hiddenumail");
+//		String hiddenumail = request.getParameter("hiddenumail");
 		
 		System.out.println(umail);
-		System.out.println(hiddenumail);		// input hidden의 value는 의미가 없어보임 뭔지모르겠따. value에 ${user_password}? 
-		System.out.println("메일,히든");
+		System.out.println(uname);
+
+//		System.out.println(hiddenumail);		// input hidden의 value는 의미가 없어보임 뭐에쓰는거지. value에 ${user_password}? 
+//		System.out.println("메일,히든");
 		
 		Service service = new ServiceImpl();
-		UsersVO vo = service.getUser(Integer.parseInt(umail));
+		UsersVO vo = new UsersVO();//vo에는 parameter로 넣어놨으니까 vo.equal(vo)형태라 틀려도 전혀 비교 안됨
+		UsersVO user = new UsersVO();//비교 군으로 사용하려고 즉 얘로 조회하고 얘랑 vo를 비교//
+
+//		vo = service.getUser(vo);
+		vo.setUserEmail(umail);
+		vo.setUserNickname(uname);
 		System.out.println(vo);
-		request.setAttribute("result", vo);
-		     
-		if(umail.equals(vo)) {
-			// ㅠ.......................제발
+		user=service.search(umail);
+		System.out.println("--------");
+		String passwd = service.getUser(vo);
+		request.setAttribute("passwd", passwd);
+		System.out.println(passwd); 	// 우선 null
+		System.out.println("||||||||||||||");
+		System.out.println(user);
+		if(passwd!=null) {
+			
+		}else {
+			
+		}
+//		request.setAttribute("result", vo);
+		if(user!=null) {
+		if(umail.equals(user.getUserEmail())&&uname.equals(user.getUserNickname())) {
+			System.out.println("umail : " + umail);
+			request.setAttribute("passwd", "비밀번호는 " + passwd +"입니다\\n로그인화면으로 돌아갑니다");
+			try {
+				request.getRequestDispatcher("WEB-INF/views/login/findpwResult.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				request.getRequestDispatcher("WEB-INF/views/login/findpw.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		}else {
+			System.out.println("조회된 유저가 없습니다.");
+			try {
+				request.getRequestDispatcher("WEB-INF/views/login/findpw.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
-		
-		try {
-			request.getRequestDispatcher("WEB-INF/views/login/findpwResult.jsp").forward(request, response);
-		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		MemberDao dao = new MemberDao();
-//		 String member_mid = dao.findId(member_name, member_phone); //아이디를 디비에서 가져옴..실패시 널
-//		 
-//		%>
-//
-//		  <form name="idsearch" method="post">
-//		      <%
-//		       if (member_mid != null) {
-//		      %>
-//		      
-//		      <div class = "container">
-//		      	<div class = "found-success">
-//			      <h4>  회원님의 아이디는 </h4>  
-//			      <div class ="found-id"><%=member_mid%></div>
-//			      <h4>  입니다 </h4>
-//			     </div>
-//			     <div class = "found-login">
-//		 		    <input type="button" id="btnLogin" value="로그인" onClick = 'login()'/>
-//		       	</div>
-//		       </div>
-//		      <%
-//		  } else {
-//		 %>
-//		        <div class = "container">
-//		      	<div class = "found-fail">
-//			      <h4>  등록된 정보가 없습니다 </h4>  
-//			     </div>
-//			     <div class = "found-login">
-//		 		    <input type="button" id="btnback" value="다시 찾기" onClick="history.back()"/>
-//		 		    <input type="button" id="btnjoin" value="회원가입" onClick="joinin()"/>
-//		       	</div>
-//		       </div>
-//		       
-//		    <div class = "adcontainer">
-//			<a href="#" ><img src = "../images/casead.png" /></a>                
-//		</div>   
-//		       <%
-//		  }
-//		 %> 
-//		      </form>
 	}
 
 }

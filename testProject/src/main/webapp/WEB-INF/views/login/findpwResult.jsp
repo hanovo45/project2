@@ -9,10 +9,19 @@
 </head>
 <body>
 
-<%UsersVO vo =(UsersVO)request.getAttribute("member");%>
+<%-- 
+<%UsersVO vo =(UsersVO)request.getAttribute("umail");%>
 <h3>조회 결과 (findResult.jsp)</h3>
-<p>아이디 : <%=vo.getUserPassword() %></p>
+<p>아이디 : ${passwd }</p>
+--%>
 
+
+<script>
+
+let passwd = '${passwd}';
+alert(passwd);
+
+</script>
 
 <%--  
   <form name="pwsearch" method="post">
