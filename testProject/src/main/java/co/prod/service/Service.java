@@ -1,5 +1,7 @@
 package co.prod.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import co.prod.vo.UsersVO;
 
 public interface Service {
@@ -16,7 +18,34 @@ public interface Service {
 	public String getUser(UsersVO vo);
 	
 	// 
-	public UsersVO search(String userEmail);
+	public UsersVO searchE(UsersVO vo);
 	
+	public UsersVO searchN(String userNickname);
 //	이메일 
+	
+	public AjaxService(UsersVO vo);
+	
+	public int checkId(String id);
+	// 중복체크?
+	
+	public class AjaxService {
+	    
+	    private MemberDao memberDao;
+	    
+	    @Autowired
+	    public AjaxService(MemberDao memberDao) {
+	        this.memberDao = memberDao;
+	    }
+	 
+	    public int checkId(String id) {
+	        int result = 0;
+	        
+	        result = memberDao.checkId(id);
+	        return result;
+	    }
+	    
+	 
+	 
+	}
+	
 }

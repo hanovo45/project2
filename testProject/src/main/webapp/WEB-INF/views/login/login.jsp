@@ -250,7 +250,9 @@ button.ghost {
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registration</span>
-                <input type="email" placeholder="Email" name="umail" required/>
+                <input type="email" placeholder="Email" name="umail"/>
+                <button class="idChk btn btn-success" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+                <input type="button" value="중복확인" class="dup" onclick="winopen()" style="WIDTH: 60pt";><br>
                 <input type="password" placeholder="Password" name="upw" required/>
                 <input type="text" placeholder="NickName" name="uname" required/>
                 <button>Sign Up</button>
@@ -302,7 +304,36 @@ button.ghost {
 		</div>
 	</div>
 	
+<!-- 중복체크 시작 -->	
+
+<script type="text/javascript">
+function winopen(){
+	
+	//새창을 열어서 페이지를 오픈 후 -> 회원아이디정보를 가지고 중복체크
+	//1. 아이디가 없으면 알림창과 진행x
+
+	if(document.fr.id.value =="" || document.fr.id.value.length < 0){
+		alert("아이디를 먼저 입력해주세요")
+		document.fr.id.focus();
+	}else{
+		//2. 회원정보아이디를 가지고 있는 지 체크하려면 DB에 접근해야한다.
+		//자바스크립트로 어떻게 DB에 접근할까? => 파라미터로 id값을 가져가서 jsp페이지에서 진행하면 된다.
+		window.open("joinIdCheck.jsp?userid="+document.fr.id.value,"","width=500, height=300");
+	}
+	  
+}
+</script>
+
+<!-- 중복체크 끝 -->
+
 <script>
+
+let passwd = '${passwdResult}';
+if(passwd != "") {
+	alert(passwd);
+	passwd = "";
+}
+
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');

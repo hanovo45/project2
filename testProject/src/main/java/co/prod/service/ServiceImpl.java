@@ -32,8 +32,17 @@ public class ServiceImpl implements Service {
 	}
 
 	@Override
-	public UsersVO search(String userEmail) {
-		return mapper.searchUser(userEmail);
+	public UsersVO searchE(UsersVO vo) {
+		System.out.println("ServiceImpl의 Email 값: " + vo);
+		
+		return mapper.searchEmail(vo);
 	}
+
+	@Override
+	public UsersVO searchN(String userNickname) {
+
+		return mapper.searchName(userNickname);
+	}
+	
 
 }

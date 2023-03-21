@@ -31,6 +31,12 @@
  </form>
  <script>
 
+ let msg = '${msg}';
+ if(msg){
+ 	alert(msg);
+ }
+ 
+ 
  function pw_search() { 
 	 
 	 	
@@ -51,6 +57,9 @@
 	 frm.action = "findPw.do"; //넘어간화면
 	 frm.submit();  
 	 }
+ 
+ 
+ 
  </script>
 </body>
 </html>

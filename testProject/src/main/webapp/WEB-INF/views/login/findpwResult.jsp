@@ -18,8 +18,9 @@
 
 <script>
 
-let passwd = '${passwd}';
+let passwd = '${passwdResult}';.
 alert(passwd);
+
 
 </script>
 

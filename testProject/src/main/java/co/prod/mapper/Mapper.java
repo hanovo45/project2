@@ -13,5 +13,8 @@ public interface Mapper {
 	// 비밀번호 찾기
 	public String selectUser(UsersVO vo);
 	
-	public UsersVO searchUser(String userEmail);
+	public UsersVO searchEmail(UsersVO vo);
+	
+	public UsersVO searchName(String userName);
+
 }

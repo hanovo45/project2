@@ -48,7 +48,7 @@ public class LoginControl implements Control {
 		}else {
 			
 //			System.out.println("실패");
-			request.setAttribute("msg", "이메일이나 비밀번호가 다릅니다");
+			request.setAttribute("msg", "이메일이나 비밀번호가 일치하지 않습니다");
 			request.setAttribute("url", "WEB-INF/views/login/login.jsp");
 			try {
 				request.getRequestDispatcher("loginForm.do").forward(request, response);

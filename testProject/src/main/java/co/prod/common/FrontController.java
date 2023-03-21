@@ -17,6 +17,7 @@ import co.prod.control.LoginFormControl;
 import co.prod.control.LogoutControl;
 import co.prod.control.SignUpControl;
 import co.prod.control.SignUpFormControl;
+import co.prod.control.checkIdControl;
 import co.prod.controller.MainPageListControl;
 import co.prod.controller.ManageHotelAddControl;
 //import co.prod.controller.ManageHotelAddControl;
@@ -49,6 +50,7 @@ public class FrontController extends HttpServlet{
 		map.put("/findPw.do", new FindPwControl());	// 비밀번호 찾기 처리
 		map.put("/signUp.do", new SignUpControl());	// 회원가입처리
 		map.put("/signUpForm.do", new SignUpFormControl());	//회원가입화면
+		map.put("/checkId", new checkIdControl()); 	// 중복체크 화면
 		map.put("/manageHotelList.do", new ManageHotelListControl()); //관리자페이지 홈
 		map.put("/viewPost.do", new ViewPostControl());
 		map.put("/postWriteForm.do", new PostWriteFormControl());

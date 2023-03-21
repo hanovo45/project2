@@ -9,8 +9,12 @@
     select * from users where user_email = #{userEmail} and user_password = #{userPassword}
   </select>
   
-  <select id="searchUser">
-  select * from users where user_email = #{userEmail}
+  <select id="searchEmail" parameterType="co.prod.vo.UsersVO" resultType="co.prod.vo.UsersVO">
+  select * from users where user_email = #{userEmail} <!-- and user_nickname = #{userNickname} -->
+  </select>
+  
+  <select id="searchName">
+  select * from users where user_nickname = #{userNickname}
   </select>
   
   <insert id="insertUser" parameterType="co.prod.vo.UsersVO">
