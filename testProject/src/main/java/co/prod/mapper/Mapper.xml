@@ -25,4 +25,12 @@ values(#{userEmail},#{userPassword},#{userNickname})
   <select id="selectUser" parameterType="co.prod.vo.UsersVO">
   	select user_password from users where user_email=#{userEmail} and user_nickname=#{userNickname}
   </select>
+  
+  <select id="userList" resultType="co.prod.vo.UsersVO">
+  	select * from users
+  </select>
+  
+  <select id="selectUserd" parameterType="String" resultType="co.prod.vo.UsersVO">
+  	select * from users where user_email = #{userEmail}
+  </select>
 </mapper>

@@ -39,6 +39,7 @@ public class LoginControl implements Control {
 			System.out.println(vo.getUserPassword());
 			session.setAttribute("auth", vo.getUserAuth());
 			System.out.println(vo.getUserAuth());
+			session.setAttribute("userVO", vo);
 			try {
 				response.sendRedirect("test.do");
 			} catch (IOException e) {
