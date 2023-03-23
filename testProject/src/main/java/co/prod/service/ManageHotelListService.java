@@ -9,5 +9,9 @@ public interface ManageHotelListService {
 	
 	public boolean addHotel(HotelsVO vo);
 
+	public int modifyHotel(HotelsVO vo);
+
+	public int RemoveHotel(String hid);
+
 
 }

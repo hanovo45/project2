@@ -22,4 +22,10 @@ public class HotelFilterServiceImpl implements HotelFilterService{
 		return list;
 	}
 
+	@Override
+	public HotelsVO getHotelInfo(String id) {
+		HotelsVO list = mapper.getHotelInfo(id);
+		return list;
+	}
+
 }

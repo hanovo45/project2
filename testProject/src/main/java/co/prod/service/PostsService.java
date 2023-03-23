@@ -23,4 +23,12 @@ public interface PostsService {
 	public int getTotalCount(String type);
 	
 	public List<PostsVO> postListPaging(Map<String, Object> map);
+	
+	public PostsVO getPostResponse(int pid);
+	
+	public boolean postResponseUpdate(Map<String, Object> map);
+	
+	public boolean postRemove(int pid);
+	
+	public boolean postModify(PostsVO vo);
 }

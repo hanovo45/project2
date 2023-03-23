@@ -58,6 +58,18 @@ public class ServiceImpl implements Service {
 		// TODO Auto-generated method stub
 		return mapper.selectUserd(userEmail);
 	}
+
+	@Override
+	public int modifyUser(UsersVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.updateUser(vo);
+	}
+
+	@Override
+	public int removoUser(String umail) {
+		// TODO Auto-generated method stub
+		return mapper.deleteUser(umail);
+	}
 	
 
 }

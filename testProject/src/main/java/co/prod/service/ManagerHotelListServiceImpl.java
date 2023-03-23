@@ -22,4 +22,19 @@ public class ManagerHotelListServiceImpl implements ManageHotelListService{
 	public boolean addHotel(HotelsVO vo) {
 		return mapper.insertHotel(vo)>0;
 	}
+
+	@Override
+	public int RemoveHotel(String hid) {
+		return mapper.deleteHotel(hid);
+
+	}
+
+	@Override
+	public int modifyHotel(HotelsVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.updateHotel(vo);
+	}
+
+	
+	
 }

@@ -25,4 +25,11 @@ public interface Service {
 	// 정보수정에서 유저조회
 	public UsersVO getUserInfo(String userEmail);
 	
+	// 유저 정보 수정
+	public int modifyUser(UsersVO vo);
+
+	// 유저 정보 삭제
+	public int removoUser(String umail);
+	
+	
 }

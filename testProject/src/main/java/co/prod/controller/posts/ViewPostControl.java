@@ -16,6 +16,8 @@ public class ViewPostControl implements Control {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		PostsVO vo = new PostsServiceImpl().getPost(Integer.parseInt(request.getParameter("pid")));
 		request.setAttribute("post", vo);
+		PostsVO postResponse = new PostsServiceImpl().getPostResponse(vo.getPostId());
+		request.setAttribute("postResponse", postResponse);
 		try {
 			request.getRequestDispatcher("posts/post.tiles").forward(request, response);
 		} catch (ServletException | IOException e) {

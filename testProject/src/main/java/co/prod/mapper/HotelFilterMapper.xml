@@ -6,4 +6,8 @@
   <select id="getHotelList" resultType="HotelsVO">
   select * from hotels
   </select>
+  
+  <select id="getHotelInfo" resultType="HotelsVO">
+  select * from hotels where hotel_id = #{id}
+  </select>
 </mapper>

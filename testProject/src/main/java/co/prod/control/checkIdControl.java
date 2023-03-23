@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import co.prod.common.Control;
 
 @RequestMapping("/checkId.do")
-public class checkIdControl implements Control {
+//public class checkIdControl implements Control {
 
 //	@Override
 //	public void execute(HttpServletRequest request, HttpServletResponse response) {

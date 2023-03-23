@@ -7,9 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import co.prod.common.Control;
 import co.prod.service.PostsService;
 import co.prod.service.PostsServiceImpl;
@@ -24,25 +21,25 @@ public class PostWriteControl implements Control {
 		vo.setPostTitle(request.getParameter("title"));
 		vo.setPostContent(request.getParameter("content"));
 		vo.setUserEmail(request.getParameter("email"));
+
 		PostsService service = new PostsServiceImpl();
-		boolean result = service.writePost(vo);
-		Map<String, Object> map = new HashMap<>();
-		Gson gson = new GsonBuilder().create();
-		String json = "";
-		if (result) {
-			map.put("retCode", "Success");
-			map.put("post", vo);
-		}else {
-			map.put("retCode", "Fail");
-			map.put("post", null);
+		String requestId = request.getParameter("postRequestId");
+		if (requestId != null) {
+			vo.setPostRequestId(Integer.parseInt(requestId));
+			Map<String, Object> map = new HashMap<>();
+			map.put("pid", requestId);
+			map.put("response", "Y");
+			service.postResponseUpdate(map);
 		}
-		json = gson.toJson(map);
-		response.setContentType("text/json;charset=utf-8");
-		try {
-			response.getWriter().append(json);
-		} catch (IOException e) {
-			e.printStackTrace();
+		boolean result = service.writePost(vo);
+		if (result) {
+			try {
+				response.sendRedirect("postList.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			request.getRequestDispatcher("viewPost.do?pid="+requestId);
 		}
 	}
-
 }

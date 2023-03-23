@@ -2,6 +2,7 @@ package co.prod.control;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,10 +23,13 @@ public class SignUpControl implements Control {
 		
 		System.out.println(vo);
 		boolean result = new ServiceImpl().addUser(vo);
+	
 		if(result) {
+		
 			try {
-				response.sendRedirect("test.do");
-			} catch (IOException e) {
+				request.setAttribute("msg", "회원가입을 축하합니다\\n 가입축하금 5000원이 지급되었습니다");
+				request.getRequestDispatcher("mainpage.do").forward(request, response);
+			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}
 		}else {

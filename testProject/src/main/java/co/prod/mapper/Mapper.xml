@@ -33,4 +33,12 @@ values(#{userEmail},#{userPassword},#{userNickname})
   <select id="selectUserd" parameterType="String" resultType="co.prod.vo.UsersVO">
   	select * from users where user_email = #{userEmail}
   </select>
+  
+  <update id="updateUser" parameterType="co.prod.vo.UsersVO">
+  	update users set user_password=#{userPassword}, user_nickname=#{userNickname} where user_email = #{userEmail}
+  </update>
+  
+  <delete id="deleteUser" parameterType="String">
+  	delete from users where user_email= #{userEmail}
+  </delete>
 </mapper>

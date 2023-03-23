@@ -30,6 +30,8 @@ public class LoginControl implements Control {
 		System.out.println(vo);
 		
 		HttpSession session = request.getSession();
+		session.setAttribute("email", vo.getUserEmail());
+		session.setAttribute("userVO", vo);
 		
 		if(vo!=null) {
 			
@@ -47,8 +49,6 @@ public class LoginControl implements Control {
 				e.printStackTrace();
 			}
 		}else {
-			
-//			System.out.println("실패");
 			request.setAttribute("msg", "이메일이나 비밀번호가 일치하지 않습니다");
 			request.setAttribute("url", "WEB-INF/views/login/login.jsp");
 			try {
@@ -57,16 +57,8 @@ public class LoginControl implements Control {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			return 
 		}
 		
-		
-//		String userEmail;
-//		String userPassword;
-//		String userAuth;
-//		String userNickname;
-//		String userCoupon;
-//		String userLikelist;
 	}
 
 }

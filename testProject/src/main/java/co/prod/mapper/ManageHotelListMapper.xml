@@ -11,4 +11,13 @@
 insert into hotels (HOTEL_ID,HOTEL_LOCATION,HOTEL_NAME,HOTEL_TEL,HOTEL_SERVICE,HOTEL_VIEW,HOTEL_ADDRESS,HOTEL_PHOTO,HOTEL_CHECKIN,HOTEL_CHECKOUT) values(#{hotelId},#{hotelLocation},#{hotelName},#{hotelTel},#{hotelService},#{hotelView},#{hotelAddress},#{hotelPhoto},#{hotelCheckIn},#{hotelCheckOut})
 </update>
 
+<delete id="deleteHotel" parameterType="String">
+   delete from hotels where hotel_id = #{hid}
+   </delete>
+ 
+   
+<update id="updateHotel" parameterType="co.prod.vo.HotelsVO">
+update hotels set HOTEL_ID=#{hotelId}, HOTEL_LOCATION=#{hotelLocation}, HOTEL_NAME=#{hotelName},HOTEL_TEL=#{hotelTel},HOTEL_SERVICE=#{hotelService},HOTEL_VIEW=#{hotelView},HOTEL_ADDRESS=#{hotelAddress},HOTEL_PHOTO=#{hotelPhoto, } where hotel_id=#{hotelId}
+</update>
+
 </mapper>

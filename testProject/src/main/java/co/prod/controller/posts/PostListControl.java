@@ -17,6 +17,8 @@ import co.prod.vo.PostsVO;
 
 public class PostListControl implements Control {
 	public static PageDTO pageInfoQ = null;
+	public static PageDTO pageInfoF = null;
+	public static PageDTO pageInfoN = null;
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		//질문, 공지, 자주묻는질문 각각 리스트로 가져와서
@@ -30,17 +32,39 @@ public class PostListControl implements Control {
 //		request.setAttribute("faqs", list3);
 		
 		//페이징
-		int page = (request.getParameter("pageQ") != null)?Integer.parseInt(request.getParameter("pageQ")):1;
+		//Q
+		int pageQ = (request.getParameter("pageQ") != null)?Integer.parseInt(request.getParameter("pageQ")):1;
 		int totalQ = service.getTotalCount("Q");
-		pageInfoQ = new PageDTO(page, totalQ);
+		pageInfoQ = new PageDTO(pageQ, totalQ);
 		request.setAttribute("pageQ", pageInfoQ);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("type", "Q");
-		map.put("page", page);
-		System.out.println(map);
-		List<PostsVO> tempList = service.postListPaging(map);
-		request.setAttribute("questions", tempList);
+		map.put("page", pageQ);
+		List<PostsVO> ListQ = service.postListPaging(map);
+		request.setAttribute("questions", ListQ);
+		
+		//F
+		int pageF = (request.getParameter("pageF") != null)?Integer.parseInt(request.getParameter("pageF")):1;
+		int totalF = service.getTotalCount("F");
+		pageInfoF = new PageDTO(pageF, totalF);
+		request.setAttribute("pageF", pageInfoF);
+		
+		map.put("type", "F");
+		map.put("page", pageF);
+		List<PostsVO> ListF = service.postListPaging(map);
+		request.setAttribute("faqs", ListF);
+		
+		//N
+		int pageN = (request.getParameter("pageN") != null)?Integer.parseInt(request.getParameter("pageN")):1;
+		int totalN = service.getTotalCount("N");
+		pageInfoN = new PageDTO(pageN, totalN);
+		request.setAttribute("pageN", pageInfoN);
+		
+		map.put("type", "N");
+		map.put("page", pageN);
+		List<PostsVO> ListN = service.postListPaging(map);
+		request.setAttribute("notices", ListN);
 		//글쓰기 ajax에 필요한 ID 
 		int nextId = service.getPostId();
 		request.setAttribute("postNextId", nextId);

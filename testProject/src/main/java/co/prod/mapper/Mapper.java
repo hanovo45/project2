@@ -18,7 +18,12 @@ public interface Mapper {
 	public UsersVO searchEmail(UsersVO vo);
 	public UsersVO searchName(String userName);
 
-	// 수정용 유저리스트
+	// 수정용 유저조회기능
 	public List<UsersVO> userList();
 	public UsersVO selectUserd(String userEmail);
+
+	// 유저 수정
+	public int updateUser(UsersVO vo);
+	// 유저 삭제
+	public int deleteUser(String umail);
 }

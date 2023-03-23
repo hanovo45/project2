@@ -29,5 +29,9 @@ public class HotelsVO {
 	String hotelCheckIn;
 	String hotelCheckOut;
 	int hotelLike;
+	String hostName;
+	int hotelPrice;
+	String hotelMemo;
+	
 	
 }
