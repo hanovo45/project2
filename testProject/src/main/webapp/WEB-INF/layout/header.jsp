@@ -66,15 +66,14 @@
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse zero_mp" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav navbar-right main_menu">                                
-                                    <li><a href="myPageForm.do">마이 페이지</a></li>
-                                    <%
-                                String email = (String) session.getAttribute("email");
-                                %>
+                                <ul class="nav navbar-nav navbar-right main_menu">                                                            
+                                	<li><a href="myPageForm.do">마이 페이지</a></li>
+                               
+                                <% String email = (String) session.getAttribute("email"); %>                                
                                 <%if(email ==null){ %>
-                                <li class="nav-item"><a class="nav-link" href="loginForm.do">로그인</a></li>
+                                	<li class="nav-item"><a class="nav-link" href="loginForm.do">로그인</a></li>
                                 <%} else{%>
-                                <li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a></li>
+                                	<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a></li>
                                 <%} %>
                                     <li><div class="dropdown">
 									  <button onclick="myFunction()" class="dropbtn">menu</button>

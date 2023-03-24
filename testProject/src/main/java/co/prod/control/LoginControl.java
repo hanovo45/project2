@@ -30,8 +30,6 @@ public class LoginControl implements Control {
 		System.out.println(vo);
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("email", vo.getUserEmail());
-		session.setAttribute("userVO", vo);
 		
 		if(vo!=null) {
 			
@@ -43,7 +41,7 @@ public class LoginControl implements Control {
 			System.out.println(vo.getUserAuth());
 			session.setAttribute("userVO", vo);
 			try {
-				response.sendRedirect("test.do");
+				response.sendRedirect("mainpage.do");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

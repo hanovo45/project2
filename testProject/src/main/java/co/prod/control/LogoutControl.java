@@ -17,7 +17,7 @@ public class LogoutControl implements Control {
 		session.invalidate(); // 세션정보 지우기
 		
 		try {
-			response.sendRedirect("test.do");
+			response.sendRedirect("mainpage.do");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
